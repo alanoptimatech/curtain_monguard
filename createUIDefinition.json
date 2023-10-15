@@ -1,0 +1,319 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
+    "handler": "Microsoft.Azure.CreateUIDef",
+    "version": "0.1.2-preview",
+    "parameters": {
+        "basics": [
+            {}
+        ],
+        "steps": [
+            {
+                "name": "vmConfig",
+                "label": "Configure VM",
+                "elements": [
+                    {
+                        "name": "vmName",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Virtual Machine Name",
+                        "toolTip": "Name of the virtual machine.",
+                        "constraints": {
+                            "required": true,
+                            "validations": [
+                                {
+                                    "regex": "^(?![0-9-])(?!.*--)(?!.*(^[0-9])|-*$)[a-zA-Z0-9_-]{1,64}$",
+                                    "message": "Only alphanumeric characters are allowed, and the value must be 1-30 characters long, and the name cannot start with a hyphen or a number"
+                                }
+                            ]
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "adminUsername",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Admin Username",
+                        "toolTip": "Username for the Virtual Machine.",
+                        "constraints": {
+                            "required": true,
+                            "validations": [
+                                {
+                                    "regex": "^(?![0-9-])(?!.*--)(?!.*(^[0-9])|-*$)[a-zA-Z0-9_-]{1,64}$",
+                                    "message": "Only alphanumeric characters are allowed, and the value must be 1-30 characters long, and the name cannot start with a hyphen or a number"
+                                }
+                            ]
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "adminPassword",
+                        "type": "Microsoft.Common.PasswordBox",
+                        "label": "Admin Password",
+                        "toolTip": "Password for the Virtual Machine (min. 12 characters).",
+                        "constraints": {
+                            "required": true,
+                            "minLength": 10
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "osVersion",
+                        "type": "Microsoft.Common.DropDown",
+                        "label": "Virtual Machine Windows Version",
+                        "toolTip": "The Windows version for the Virtual Machine.",
+                        "constraints": {
+                            "required": true,
+                            "allowedValues": [
+                                {
+                                    "label": "Windows Server 2016 Datacenter (General Second Release)",
+                                    "value": "2016-datacenter-gensecond"
+                                },
+                                {
+                                    "label": "Windows Server 2016 Datacenter (Server Core - G2)",
+                                    "value": "2016-datacenter-server-core-g2"
+                                },
+                                {
+                                    "label": "Windows Server 2016 Datacenter (Server Core - Small Disk - G2)",
+                                    "value": "2016-datacenter-server-core-smalldisk-g2"
+                                },
+                                {
+                                    "label": "Windows Server 2016 Datacenter (Small Disk - G2)",
+                                    "value": "2016-datacenter-smalldisk-g2"
+                                },
+                                {
+                                    "label": "Windows Server 2016 Datacenter (with Containers - G2)",
+                                    "value": "2016-datacenter-with-containers-g2"
+                                },
+                                {
+                                    "label": "Windows Server 2016 Datacenter (Chinese - G2)",
+                                    "value": "2016-datacenter-zhcn-g2"
+                                },
+                                {
+                                    "label": "Windows Server 2019 Datacenter (Core - G2)",
+                                    "value": "2019-datacenter-core-g2"
+                                },
+                                {
+                                    "label": "Windows Server 2019 Datacenter (Core - Small Disk - G2)",
+                                    "value": "2019-datacenter-core-smalldisk-g2"
+                                },
+                                {
+                                    "label": "Windows Server 2019 Datacenter (Core with Containers - G2)",
+                                    "value": "2019-datacenter-core-with-containers-g2"
+                                },
+                                {
+                                    "label": "Windows Server 2019 Datacenter (Core with Containers - Small Disk - G2)",
+                                    "value": "2019-datacenter-core-with-containers-smalldisk-g2"
+                                },
+                                {
+                                    "label": "Windows Server 2019 Datacenter (General Second Release)",
+                                    "value": "2019-datacenter-gensecond"
+                                },
+                                {
+                                    "label": "Windows Server 2019 Datacenter (Small Disk - G2)",
+                                    "value": "2019-datacenter-smalldisk-g2"
+                                },
+                                {
+                                    "label": "Windows Server 2019 Datacenter (with Containers - G2)",
+                                    "value": "2019-datacenter-with-containers-g2"
+                                },
+                                {
+                                    "label": "Windows Server 2019 Datacenter (with Containers - Small Disk - G2)",
+                                    "value": "2019-datacenter-with-containers-smalldisk-g2"
+                                },
+                                {
+                                    "label": "Windows Server 2019 Datacenter (Chinese - G2)",
+                                    "value": "2019-datacenter-zhcn-g2"
+                                },
+                                {
+                                    "label": "Windows Server 2022 Datacenter (Azure Edition)",
+                                    "value": "2022-datacenter-azure-edition"
+                                },
+                                {
+                                    "label": "Windows Server 2022 Datacenter (Azure Edition - Core)",
+                                    "value": "2022-datacenter-azure-edition-core"
+                                },
+                                {
+                                    "label": "Windows Server 2022 Datacenter (Azure Edition - Core - Small Disk)",
+                                    "value": "2022-datacenter-azure-edition-core-smalldisk"
+                                },
+                                {
+                                    "label": "Windows Server 2022 Datacenter (Azure Edition - Small Disk)",
+                                    "value": "2022-datacenter-azure-edition-smalldisk"
+                                },
+                                {
+                                    "label": "Windows Server 2022 Datacenter (Core - G2)",
+                                    "value": "2022-datacenter-core-g2"
+                                },
+                                {
+                                    "label": "Windows Server 2022 Datacenter (Core - Small Disk - G2)",
+                                    "value": "2022-datacenter-core-smalldisk-g2"
+                                },
+                                {
+                                    "label": "Windows Server 2022 Datacenter (G2)",
+                                    "value": "2022-datacenter-g2"
+                                },
+                                {
+                                    "label": "Windows Server 2022 Datacenter (Small Disk - G2)",
+                                    "value": "2022-datacenter-smalldisk-g2"
+                                }
+                            ]
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "vmSize",
+                        "type": "Microsoft.Common.DropDown",
+                        "label": "Virtual Machine Size",
+                        "defaultValue": "Standard_B2ms",
+                        "toolTip": "Please select the size of your virtual MAchine",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Standard_B2ms",
+                                    "value": "Standard_B2ms"
+                                },
+                                {
+                                    "label": "Standard_D2s_v5",
+                                    "value": "Standard_D2s_v5"
+                                },
+                                {
+                                    "label": "Standard_D4s_v5",
+                                    "value": "Standard_D4s_v5"
+                                },
+                                {
+                                    "label": "Standard_DS2_v2",
+                                    "value": "Standard_DS2_v2"
+                                },
+                                {
+                                    "label": "Standard_DS4_v2",
+                                    "value": "Standard_DS4_v2"
+                                }
+                            ],
+                            "required": true
+                        },
+                        "visible": true
+                    },
+        
+                    {
+                        "name": "securityType",
+                        "type": "Microsoft.Common.DropDown",
+                        "label": "Security Type",
+                        "toolTip": "Security Type of the Virtual Machine.",
+                        "constraints": {
+                            "required": true,
+                            "allowedValues": [
+                                {
+                                    "label": "Standard",
+                                    "value": "Standard"
+                                },
+                                {
+                                    "label": "TrustedLaunch",
+                                    "value": "TrustedLaunch"
+                                }
+                            ]
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "storageAccountSelector",
+                        "type": "Microsoft.Storage.StorageAccountSelector",
+                        "label": "Storage account",
+                        "toolTip": "Select an existing storage account OR create a new one",
+                        "defaultValue": {
+                            "name": "storageaccount01",
+                            "type": "Premium_LRS"
+                        },
+                        "options": {
+                            "hideExisting": false
+                        },
+                        "visible": true
+                    }
+                ]
+            },
+            {
+                "name": "configureVMNetwork",
+                "label": "Networks",
+                "elements": [
+                    {
+                        "name": "virtualNetworkSelector",
+                        "type": "Microsoft.Network.VirtualNetworkCombo",
+                        "label": {
+                            "virtualNetwork": "Virtual network",
+                            "subnets": "Subnets"
+                        },
+                        "toolTip": {
+                            "virtualNetwork": "Select your virtual network",
+                            "subnets": "Select a susbnet for your network"
+                        },
+                        "defaultValue": {
+                            "name": "vnet01",
+                            "addressPrefixSize": "/16"
+                        },
+                        "constraints": {
+                            "minAddressPrefixSize": "/16"
+                        },
+                        "options": {
+                            "hideExisting": false
+                        },
+                        "subnets": {
+                            "subnet1": {
+                                "label": "Subnet",
+                                "defaultValue": {
+                                    "name": "subnet-1",
+                                    "addressPrefixSize": "/24"
+                                },
+                                "constraints": {
+                                    "minAddressPrefixSize": "/24",
+                                    "minAddressCount": 12
+                                }
+                            }
+                        },
+                        "outputs": {
+                            "resourceGroup": {
+                                "type": "string",
+                                "value": "[parameters('virtualNetworkResourceGroup')]"
+                            },
+                            "newOrExisting": {
+                                "type": "string",
+                                "value": "[if(equals(parameters('createNewVirtualNetwork'), 'Yes'), 'new', 'existing')]"
+                            }
+                        },
+                        "visible": true
+                    }
+                ]
+            },
+            {
+                "name": "tags",
+                "label": "Tags",
+                "elements": [
+                    {
+                        "name": "tagsByResource",
+                        "type": "Microsoft.Common.TagsByResource",
+                        "toolTip": "Tag your VM to search across Resources",
+                        "resources": [
+                            "Microsoft.Storage/storageAccounts",
+                            "Microsoft.Compute/virtualMachines"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "outputs": {
+            "outputs": {
+				"Location": "[resourceGroup().location]",                
+                "vmName": "[steps('vmConfig').vmName]",
+                "adminUsername": "[steps('vmConfig').adminUsername]",
+                "adminPassword": "[steps('vmConfig').adminPassword]",
+                "securityType": "[steps('vmConfig').securityType]", 
+                "vmSize": "[steps('vmConfig').vmSize]",
+                "osVersion": "[steps('vmConfig').osVersion]",
+                "storageAccName": "[steps('vmConfig').storageAccountSelector.name]",
+                "storageAccResourceGroup": "[steps('vmConfig').storageAccountSelector.resourceGroup]",
+                "storageAccNewOrExisting": "[steps('vmConfig').storageAccountSelector.newOrExisting]",
+                "virtualNetworkName": "[steps('configureVMNetwork').virtualNetworkSelector.name]",
+                "addressPrefix": "[steps('configureVMNetwork').virtualNetworkSelector.addressPrefix]",
+                "subnetPrefix": "[steps('configureVMNetwork').virtualNetworkSelector.subnets.subnet1.addressPrefix]",
+                "virtualNetworkResourceGroup": "[steps('configureVMNetwork').virtualNetworkSelector.resourceGroup]",
+                "virtualNetworkNewOrExisting": "[steps('configureVMNetwork').virtualNetworkSelector.newOrExisting]"
+            }
+        }
+    }
+}
